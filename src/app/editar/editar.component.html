@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col m12">
+    <div class="card m12">
+      <div class="card-content m12 s12">
+        <form id="formulario" #form="ngForm" (submit)="updateContact(form)">
+          <div>
+
+            <div>
+              <label for="name">Nome</label>
+              <input id="name" ngModel name="name" type="text"  [(ngModel)]="contact.name">
+            </div>
+            <div>
+              <label for="email">E-mail</label>
+              <input id="email" ngModel name="email" type="email"  [(ngModel)]="contact.email">
+            </div>
+            <div>
+              <label for="phone">Telefone</label>
+              <input id="phone" ngModel name="phone" type="text" mask="(99) 99999-9999" [(ngModel)]="contact.phone">
+            </div>
+            <div>
+              <label for="dateBorn">Data de nascimento</label>
+              <input id="dateBorn" ngModel name="dateBorn" type="text" mask="99/99/9999" [(ngModel)]="contact.dateBorn">
+            </div>
+
+            <div>
+              <button class="waves-effect waves-light btn grey darken-2" >Editar</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,20 @@
+
+
+<div class="row" >
+    <div class="col s12 m6" *ngFor="let contact of contacts">
+      <div class="card">
+        <div class="card-content center-align">
+          <span class="card-title">{{ contact.name }}</span>
+          <span class="card-subtitle">{{ contact.email }}</span><br>
+          <span class="card-subtitle">{{ contact.phone }}</span><br>
+          <span class="card-subtitle">{{ contact.dateBorn }}</span>
+        </div>
+        <div class="card-action">
+          <a class="waves-effect waves-light btn grey darken-2" [routerLink]="['/editar', contact._id]">Editar</a>
+          <button (click)="deleteContact(contact._id)"  class="right waves-effect waves-light btn grey darken-2">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

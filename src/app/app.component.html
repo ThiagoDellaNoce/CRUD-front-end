@@ -4,7 +4,7 @@
 </nav>
 <nav>
   <div class="nav-wrapper blue-grey darken-1">
-    <a href='/' class="brand-logo center" style="font-size: 2.5em;">Teste técnico</a>
+    <a [routerLink]="['/']" class="brand-logo center" style="font-size: 2.5em;">Teste técnico</a>
   </div>
 </nav>
 <nav>
@@ -19,8 +19,8 @@
   <div class="nav-wrapper blue-grey darken-2">
     <div class="container">
       <ul id="nav-mobile" class="left">
-        <li><a href='cadastrar'>Cadastrar</a></li>
-        <li><a herf='listar'>Listar</a></li>
+        <li><a [routerLink]="['/cadastrar']">Cadastrar</a></li>
+        <li><a [routerLink]="['/listar']">Listar</a></li>
       </ul>
     </div>
   </div>

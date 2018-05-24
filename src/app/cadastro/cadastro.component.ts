@@ -19,7 +19,9 @@ export class CadastroComponent implements OnInit {
   headers;
 
   constructor(private http: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/';
+    // this.baseUrl = 'http://localhost:3000/';
+    this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
+    
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 

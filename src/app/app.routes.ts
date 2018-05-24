@@ -9,4 +9,5 @@ export const appRoutes: Routes = [
   { path: 'listar', component: ListaComponent },
   { path: 'cadastrar', component: CadastroComponent },
   { path: 'editar/:id', component: EditarComponent },
+  { path: '**', component: ListaComponent}
 ];

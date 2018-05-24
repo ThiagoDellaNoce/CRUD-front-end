@@ -22,7 +22,9 @@ export class EditarComponent implements OnInit {
   headers;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/';
+    // this.baseUrl = 'http://localhost:3000/';
+    this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
+    
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 

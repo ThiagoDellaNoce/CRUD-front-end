@@ -10,10 +10,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ListaComponent implements OnInit {
 
   contacts;
+
   baseUrl;
+  headers;
 
   constructor(private http: HttpClient) {
-    this.baseUrl = 'http://localhost:3000/';
+    // this.baseUrl = 'http://localhost:3000/';
+    this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
+
+    this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
    }
 
   ngOnInit() {
@@ -22,9 +27,7 @@ export class ListaComponent implements OnInit {
 
   // chama serviço READ
   getContacts() {
-    const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
-
-    this.http.get(this.baseUrl + 'contacts/', {headers: headers})
+    this.http.get(this.baseUrl + 'contacts/', {headers: this.headers})
     .subscribe(
       res => {
         this.contacts = res;
@@ -37,9 +40,7 @@ export class ListaComponent implements OnInit {
 
   // chama serviço DELETE
   deleteContact(id) {
-    const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
-
-    this.http.get(this.baseUrl + 'contacts/delete/' + id, {headers: headers})
+    this.http.get(this.baseUrl + 'contacts/delete/' + id, {headers: this.headers})
     .subscribe(
       res => {
         console.log(res);

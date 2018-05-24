@@ -47,7 +47,7 @@ export class ListaComponent implements OnInit {
       res => {
         alert(res);
         setInterval(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/listar']);
         }, 2000 );
       },
       err => {

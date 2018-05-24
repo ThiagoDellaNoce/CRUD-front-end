@@ -50,11 +50,8 @@ export class CadastroComponent implements OnInit {
       }, {headers: this.headers})
     .subscribe(
       res => {
-        this.status = true;
-        setInterval(() => {
-          this.status = false;
-          this.router.navigate(['/']);
-        }, 2000 );
+        alert(res);
+        this.router.navigate(['/']);
       },
       err => {
         console.log(err);

@@ -21,10 +21,12 @@ export class EditarComponent implements OnInit {
   baseUrl;
   headers;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  status: boolean;
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     // this.baseUrl = 'http://localhost:3000/';
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
-    
+
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
@@ -61,7 +63,13 @@ export class EditarComponent implements OnInit {
           'dateBorn': this.dateBorn
         }, {headers: this.headers})
       .subscribe(
-        res => { console.log(res); },
+        res => {
+          this.status = true;
+          setInterval(() => {
+            this.status = false;
+            this.router.navigate(['/']);
+          }, 2000 );
+        },
         err => { console.log(err); }
       );
 

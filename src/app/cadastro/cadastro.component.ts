@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,11 +19,15 @@ export class CadastroComponent implements OnInit {
   baseUrl;
   headers;
 
-  constructor(private http: HttpClient) {
+  status: boolean;
+
+  constructor(private http: HttpClient, private router: Router) {
     // this.baseUrl = 'http://localhost:3000/';
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
-    
+
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
+
+    this.status = false;
   }
 
   ngOnInit() { }
@@ -44,8 +49,16 @@ export class CadastroComponent implements OnInit {
         'dateBorn': this.dateBorn
       }, {headers: this.headers})
     .subscribe(
-      res => { console.log(res); },
-      err => { console.log(err); }
+      res => {
+        this.status = true;
+        setInterval(() => {
+          this.status = false;
+          this.router.navigate(['/']);
+        }, 2000 );
+      },
+      err => {
+        console.log(err);
+      }
     );
 
   }

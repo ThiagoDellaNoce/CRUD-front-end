@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -14,7 +16,7 @@ export class ListaComponent implements OnInit {
   baseUrl;
   headers;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     // this.baseUrl = 'http://localhost:3000/';
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
 
@@ -43,7 +45,10 @@ export class ListaComponent implements OnInit {
     this.http.get(this.baseUrl + 'contacts/delete/' + id, {headers: this.headers})
     .subscribe(
       res => {
-        console.log(res);
+        alert(res);
+        setInterval(() => {
+          this.router.navigate(['/']);
+        }, 2000 );
       },
       err => {
         console.log(err);

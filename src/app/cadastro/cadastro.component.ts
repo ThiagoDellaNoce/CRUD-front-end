@@ -19,7 +19,7 @@ export class CadastroComponent implements OnInit {
   baseUrl;
   headers;
 
-  status: boolean;
+  statusInsert: boolean;
 
   constructor(private http: HttpClient, private router: Router) {
     // this.baseUrl = 'http://localhost:3000/';
@@ -27,7 +27,7 @@ export class CadastroComponent implements OnInit {
 
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
 
-    this.status = false;
+    this.statusInsert = false;
   }
 
   ngOnInit() { }
@@ -50,8 +50,11 @@ export class CadastroComponent implements OnInit {
       }, {headers: this.headers})
     .subscribe(
       res => {
-        alert(res);
-        this.router.navigate(['/']);
+        this.statusInsert = true;
+        setInterval(() => {
+          this.statusInsert = false;
+          this.router.navigate(['/']);
+        }, 2000 );
       },
       err => {
         console.log(err);

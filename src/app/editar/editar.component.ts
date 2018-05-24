@@ -21,7 +21,7 @@ export class EditarComponent implements OnInit {
   baseUrl;
   headers;
 
-  status: boolean;
+  statusEdit: boolean;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     // this.baseUrl = 'http://localhost:3000/';
@@ -64,9 +64,9 @@ export class EditarComponent implements OnInit {
         }, {headers: this.headers})
       .subscribe(
         res => {
-          this.status = true;
+          this.statusEdit = true;
           setInterval(() => {
-            this.status = false;
+            this.statusEdit = false;
             this.router.navigate(['/']);
           }, 2000 );
         },

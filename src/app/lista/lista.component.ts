@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { CookieService } from 'ngx-cookie';
+
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
@@ -16,15 +18,21 @@ export class ListaComponent implements OnInit {
   baseUrl;
   headers;
 
-  constructor(private http: HttpClient, private router: Router) {
-    // this.baseUrl = 'http://localhost:3000/';
+  data;
+
+  constructor(private http: HttpClient, private router: Router, private _cookieService: CookieService) {
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
 
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
    }
 
   ngOnInit() {
-    this.getContacts();
+
+    if (this.getCookie() != null) {
+      this.getContacts();
+    } else {
+      this.router.navigate(['/login']);
+    }
    }
 
   // chama serviço READ
@@ -46,14 +54,16 @@ export class ListaComponent implements OnInit {
     .subscribe(
       res => {
         alert(res);
-        setInterval(() => {
-          this.router.navigate(['/listar']);
-        }, 2000 );
+        this.router.navigate(['/listar']);
       },
       err => {
         console.log(err);
       }
     );
+  }
+
+  getCookie() {
+    return this._cookieService.get('token');
   }
 }
 

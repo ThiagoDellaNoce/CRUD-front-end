@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-content">
+
+        <div class="row">
+          <form id="formulario" #form="ngForm" (submit)="form_submit(form)" class="col center">
+            <div class="row">
+
+              <h1>Cadastrar novo usuário</h1>
+
+              <div class="input-field col m12 s12">
+                <label for="name">Nome</label>
+                <input id="name" ngModel name="name" type="text" class="validate">
+              </div>
+
+              <div class="input-field col m12 s12">
+                <label for="email">E-mail</label>
+                <input id="email" ngModel name="email" type="email" class="validate">
+              </div>
+              <div class="input-field col m12 s12">
+                <label for="password">Senha</label>
+                <input id="password" ngModel name="password" type="password" class="validate">
+              </div>
+
+              <div class="input-field col m12 s12">
+                <button class="right waves-effect waves-light btn blue-grey darken-1">Cadastrar</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

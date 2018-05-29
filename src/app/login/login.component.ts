@@ -7,71 +7,64 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class CadastroComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   name: String;
   email: String;
-  phone: String;
-  dateBorn: String;
+  password: String;
 
   baseUrl;
   headers;
 
-  statusInsert: boolean;
-
   data;
 
   constructor(private http: HttpClient, private router: Router, private _cookieService: CookieService) {
-
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
 
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
 
-    this.statusInsert = false;
   }
 
   ngOnInit() {
-    if (this.getCookie() != null) {  } else {
-      this.router.navigate(['/login']);
+    if (this.getCookie() != null) {
+      this.router.navigate(['/']);
     }
    }
 
   // chama serviço CREATE
   form_submit(f: NgForm) {
     // pega valores do formulário
-    this.name = f.controls.name.value;
     this.email = f.controls.email.value;
-    this.phone = f.controls.phone.value;
-    this.dateBorn = f.controls.dateBorn.value;
+    this.password = f.controls.password.value;
 
     // requisição HTTP
-    this.http.post(this.baseUrl + 'contacts/add',
+    this.http.post(this.baseUrl + 'user/authenticate',
       {
-        'name': this.name,
         'email': this.email,
-        'phone': this.phone,
-        'dateBorn': this.dateBorn
+        'password': this.password
       }, {headers: this.headers})
     .subscribe(
       res => {
-        this.statusInsert = true;
-        setInterval(() => {
-          this.statusInsert = false;
-          this.router.navigate(['/']);
-        }, 2000 );
+        this.data = res;
+
+        this.putCookie(this.data.token);
+        this.router.navigate(['/']);
       },
       err => {
         console.log(err);
       }
     );
-
   }
 
   getCookie() {
     return this._cookieService.get('token');
+  }
+
+  putCookie(value) {
+    return this._cookieService.put('token', value);
   }
 }

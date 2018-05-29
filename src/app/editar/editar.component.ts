@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { CookieService } from 'ngx-cookie';
+
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -23,17 +25,23 @@ export class EditarComponent implements OnInit {
 
   statusEdit: boolean;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
-    // this.baseUrl = 'http://localhost:3000/';
+  data;
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private _cookieService: CookieService) {
+
     this.baseUrl = 'https://warm-wave-49664.herokuapp.com/';
 
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.getContactById(params['id']);
-    });
+    if (this.getCookie() != null) {
+      this.route.params.subscribe(params => {
+        this.getContactById(params['id']);
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   // Busca o contato a ser alterado (para popula campos)
@@ -75,5 +83,9 @@ export class EditarComponent implements OnInit {
 
     });
 
+  }
+
+  getCookie() {
+    return this._cookieService.get('token');
   }
 }

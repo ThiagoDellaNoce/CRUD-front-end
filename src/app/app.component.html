@@ -10,7 +10,7 @@
 <nav>
   <div class="nav-wrapper blue-grey darken-1">
     <div class="container">
-      <span class="hide-on-med-and-down right" style="font-size: 0.9em; padding: 0px">Thiago Della Noce</span>
+      <span class="hide-on-med-and-down right" style="font-size: 0.9em; padding: 0px">desenvolvido por Thiago Della Noce</span>
     </div>
   </div>
 </nav>
@@ -21,6 +21,9 @@
       <ul id="nav-mobile" class="left">
         <li><a [routerLink]="['/cadastrar']">Cadastrar</a></li>
         <li><a [routerLink]="['/listar']">Listar</a></li>
+      </ul>
+      <ul id="nav-mobile" class="right">
+        <li><a [routerLink]="['/login']" (click)="sair()">Sair</a></li>
       </ul>
     </div>
   </div>

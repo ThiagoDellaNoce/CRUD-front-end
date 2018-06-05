@@ -73,10 +73,10 @@ export class EditarComponent implements OnInit {
       .subscribe(
         res => {
           this.statusEdit = true;
-          setInterval(() => {
-            this.statusEdit = false;
-            this.router.navigate(['/']);
-          }, 2000 );
+          // setInterval(() => {
+          //   this.statusEdit = false;
+          //   // this.router.navigate(['/']);
+          // }, 2000 );
         },
         err => { console.log(err); }
       );
